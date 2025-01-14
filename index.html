@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible=IE=edge,chrome=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>TEAMROHITOFFICAL45_LIVE</title>
   <link href="https://fonts.googleapis.com/css2?family=Orion+Esperanto+Dika&display=swap" rel="stylesheet">
@@ -40,7 +40,7 @@
       max-width: 800px;
       margin-top: 20px;
     }
-    #player {
+    #video-player {
       width: 100%;
       border: 5px solid #FFFF00;
       border-radius: 10px;
@@ -84,11 +84,14 @@
       display: block;
     }
   </style>
-  <script src="https://cdn.jwplayer.com/libraries/IDzF9Zmk.js"></script>
 </head>
 <body>
   <div id="player-container">
-    <div id="player"></div>
+    <video id="video-player" controls>
+      <source src="https://example.com/path/to/default/video.mp4" type="video/mp4">
+      <source src="https://example.com/path/to/default/video.webm" type="video/webm">
+      Your browser does not support the video tag.
+    </video>
     <div id="watermark">TEAMROHITOFFICAL45</div>
   </div>
 
@@ -101,24 +104,14 @@
     <img id="csk" src="https://i.imghippo.com/files/kAds4936ws.png" alt="MS Dhoni (Chennai Super Kings)">
     <img id="rcb" src="https://i.ibb.co/pdSq89P/virat-kohli-2017-6735654c2.png" alt="Virat Kohli (Royal Challengers Bangalore)">
     <img id="kkr" src="https://i.ibb.co/YBk5KTr/177.webp" alt="Andre Russell (Kolkata Knight Riders)">
-    <img id="dc" src="https://i.ibb.co/gj6nQw9/6436bbd9eab5fb001d25777e.png" alt="Axar patel  (Delhi Capitals)">
-    <img id="rr" src=" https://i.ibb.co/ph8ZFff/qb-ZX65zm-At6-Rh28z-Apmgbg-HM2-SEONh-Tj-a1-D-tg-Gz-GUd-DZEeck3e96v-1s-UAKy-Ev-XTJy-YHCHkxzg8-X6-GY4.webp" alt="Sanju Samson (Rajasthan Royals)">
-    <img id="srh" src="https://i.ibb.co/Qf6WCXY/SRH-65ff0065378444-86036306s405v9hx.png" alt="Henrich klasan (Sunrisers Hyderabad)">
+    <img id="dc" src="https://i.ibb.co/gj6nQw9/6436bbd9eab5fb001d25777e.png" alt="Axar Patel (Delhi Capitals)">
+    <img id="rr" src="https://i.ibb.co/ph8ZFff/qb-ZX65zm-At6-Rh28z-Apmgbg-HM2-SEONh-Tj-a1-D-tg-Gz-GUd-DZEeck3e96v-1s-UAKy-Ev-XTJy-YHCHkxzg8-X6-GY4.webp" alt="Sanju Samson (Rajasthan Royals)">
+    <img id="srh" src="https://i.ibb.co/Qf6WCXY/SRH-65ff0065378444-86036306s405v9hx.png" alt="Henrich Klassen (Sunrisers Hyderabad)">
     <img id="lsg" src="https://i.ibb.co/BCNj0tC/63726.png" alt="Nicholas Pooran (Lucknow Super Giants)">
-    <img id="gt" src="https://i.ibb.co/bvwvs1s/66818.png" alt=" shubman gill (Gujarat Titans)">
+    <img id="gt" src="https://i.ibb.co/bvwvs1s/66818.png" alt="Shubman Gill (Gujarat Titans)">
   </div>
 
   <script>
-    var playerInstance = jwplayer("player").setup({
-      file: 'https://example.com/path/to/default/video.m3u8',
-      width: "100%",
-      height: "auto",
-      primary: "html5",
-      aspectratio: "16:9",
-      controls: true,
-      autostart: false,
-    });
-
     const themes = [
       { name: "Mumbai Indians", color: "var(--mi-blue)", imageId: "mi" },
       { name: "Royal Challengers Bangalore", color: "var(--rcb-red)", imageId: "rcb" },
