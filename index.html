@@ -1,6 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>TEAMROHITOFFICAL45_LIVE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orion+Esperanto+Dika&display=swap" rel="stylesheet">
+  <script src="https://cdn.jwplayer.com/libraries/IDzF9Zmk.js"></script>
+  <style>
+    :root {
+      --mi-blue: #045093;
+      --csk-yellow: #FFD700;
+      --rcb-red: #A50C1B;
+      --kkr-purple: #3F2A56;
+      --dc-blue: #004BA0;
+      --rr-pink: #EA1C69;
+      --srh-orange: #F26522;
+      --lsg-skyblue: #87CEEB;
+      --gt-navy: #1B1F3B;
+      --current-color: var(--mi-blue);
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Orion Esperanto Dika', sans-serif;
+      background: var(--current-color);
+      height: 100%;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    #player-container {
+      width: 100%;
+      max-width: 800px;
+      margin-top: 20px;
+    }
+    #player {
+      width: 100%;
+      height: 480px;
+      border: 5px solid #FFFF00;
+      border-radius: 10px;
+      box-shadow: 0 0 20px 5px rgba(255, 255, 0, 0.7);
+    }
+    #theme-selector {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: 2px solid #fff;
+      border-radius: 5px;
+      cursor: pointer;
+      color: #fff;
+      background-color: var(--current-color);
+    }
+    .player-images img {
+      display: none;
+      margin-top: 20px;
+      max-width: 300px;
+      border-radius: 10px;
+    }
+    .player-images img.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div id="player-container">
+    <div id="player"></div>
+  </div>
+
+
+  <button id="theme-selector">Change Theme</button>
+
+
+  <div class="player-images">
+    <img id="mi" src="https://i.imghippo.com/files/CO3749fac.png" alt="Rohit Sharma (Mumbai Indians)" class="active">
+    <img id="csk" src="https://i.imghippo.com/files/kAds4936ws.png" alt="MS Dhoni (Chennai Super Kings)">
+    <img id="rcb" src="https://i.ibb.co/pdSq89P/virat-kohli-2017-6735654c2.png" alt="Virat Kohli (Royal Challengers Bangalore)">
+    <img id="kkr" src="https://i.ibb.co/YBk5KTr/177.webp" alt="Andre Russell (Kolkata Knight Riders)">
+    <img id="dc" src="https://i.ibb.co/gj6nQw9/6436bbd9eab5fb001d25777e.png" alt="Axar patel (Delhi Capitals)">
+    <img id="rr" src="https://i.ibb.co/ph8ZFff/qb-ZX65zm-At6-Rh28z-Apmgbg-HM2-SEONh-Tj-a1-D-tg-Gz-GUd-DZEeck3e96v-1s-UAKy-Ev-XTJy-YHCHkxzg8-X6-GY4.webp" alt="Sanju Samson (Rajasthan Royals)">
+    <img id="srh" src="https://i.ibb.co/Qf6WCXY/SRH-65ff0065378444-86036306s405v9hx.png" alt="Henrich klasan (Sunrisers Hyderabad)">
+    <img id="lsg" src="https://i.ibb.co/BCNj0tC/63726.png" alt="Nicholas Pooran (Lucknow Super Giants)">
+    <img id="gt" src="https://i.ibb.co/bvwvs1s/66818.png" alt="Shubman Gill (Gujarat Titans)">
+  </div>
+
+
+  <script>
+    // Dynamic URL Parameter Extraction
+    const urlParams = new URLSearchParams(window.location.search);
+    const videoUrl = urlParams.get('videoUrl');
+
+
+    var playerInstance = jwplayer("player").setup({
+      file: videoUrl || 'https://example.com/default.m3u8',
+      width: "100%",
+      height: "480px",
+      aspectratio: "16:9",
+      primary: "html5",
+      controls: true,
+      autostart: false,
+      stretching: "uniform"
+    });
+
+
+    const themes = [
+      { name: "Mumbai Indians", color: "var(--mi-blue)", imageId: "mi" },
+      { name: "Chennai Super Kings", color: "var(--csk-yellow)", imageId: "csk" },
+      { name: "Royal Challengers Bangalore", color: "var(--rcb-red)", imageId: "rcb" },
+      { name: "Kolkata Knight Riders", color: "var(--kkr-purple)", imageId: "kkr" },
+      { name: "Delhi Capitals", color: "var(--dc-blue)", imageId: "dc" },
+      { name: "Rajasthan Royals", color: "var(--rr-pink)", imageId: "rr" },
+      { name: "Sunrisers Hyderabad", color: "var(--srh-orange)", imageId: "srh" },
+      { name: "Lucknow Super Giants", color: "var(--lsg-skyblue)", imageId: "lsg" },
+      { name: "Gujarat Titans", color: "var(--gt-navy)", imageId: "gt" }
+    ];
+
+
+    const themeSelector = document.getElementById('theme-selector');
+    const root = document.documentElement;
+    const playerImages = document.querySelectorAll('.player-images img');
+
+
+    let currentThemeIndex = 0;
+
+
+    function updateThemeAndImage() {
+      playerImages.forEach(img => img.classList.remove('active'));
+
+
+      const nextTheme = themes[currentThemeIndex];
+      root.style.setProperty('--current-color', nextTheme.color);
+      document.getElementById(nextTheme.imageId).classList.add('active');
+
+
+      currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+    }
+
+
+    themeSelector.addEventListener('click', updateThemeAndImage);
+    updateThemeAndImage();
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -85,8 +231,12 @@ display: block;
 </div>
 
 <script>
+// Dynamic URL Parameter Extraction
+const urlParams = new URLSearchParams(window.location.search);
+const videoUrl = urlParams.get('videoUrl');
+
 var playerInstance = jwplayer("player").setup({
-file: 'https://example.com/your-stream.m3u8', // Replace with actual stream URL
+file: videoUrl || 'https://example.com/default.m3u8',
 width: "100%",
 height: "480px",
 aspectratio: "16:9",
